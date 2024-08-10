@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"log"
 )
 
 func commandMap(apiState *config) error {
@@ -11,7 +10,7 @@ func commandMap(apiState *config) error {
 	resp, err := apiState.pokeapi.GetLocations(apiState.nextLocationURL)
 
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	fmt.Println()
@@ -35,7 +34,7 @@ func commandMapb(apiState *config) error {
 	resp, err := apiState.pokeapi.GetLocations(apiState.prevLocationURL)
 
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	fmt.Println()
