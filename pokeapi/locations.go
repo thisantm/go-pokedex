@@ -3,7 +3,6 @@ package pokeapi
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io"
 	"net/http"
 )
@@ -18,9 +17,13 @@ type Locations struct {
 	} `json:"results"`
 }
 
-func (c *Client) GetLocations(page int) (Locations, error) {
-	endpoint := fmt.Sprintf("/location-area/?offset=%d&limit=20", page)
+func (c *Client) GetLocations(pageURL *string) (Locations, error) {
+	endpoint := "/location-area/"
 	fullURL := baseURL + endpoint
+
+	if pageURL != nil {
+		fullURL = *pageURL
+	}
 
 	req, err := http.NewRequest("GET", fullURL, nil)
 
