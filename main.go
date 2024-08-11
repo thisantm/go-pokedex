@@ -1,6 +1,10 @@
 package main
 
-import "github.com/thisantm/go-pokedex/pokeapi"
+import (
+	"time"
+
+	"github.com/thisantm/go-pokedex/pokeapi"
+)
 
 type config struct {
 	pokeapi         pokeapi.Client
@@ -10,7 +14,7 @@ type config struct {
 
 func main() {
 	apiState := config{
-		pokeapi: pokeapi.NewClient(),
+		pokeapi: pokeapi.NewClient(time.Hour),
 	}
 	startRepl(&apiState)
 }

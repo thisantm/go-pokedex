@@ -25,6 +25,18 @@ func (c *Client) GetLocations(pageURL *string) (Locations, error) {
 		fullURL = *pageURL
 	}
 
+	bodyBytes, ok := c.cache.Get(fullURL)
+
+	if ok {
+		locations := Locations{}
+		err := json.Unmarshal(bodyBytes, &locations)
+
+		if err != nil {
+			return Locations{}, err
+		}
+		return locations, nil
+	}
+
 	req, err := http.NewRequest("GET", fullURL, nil)
 
 	if err != nil {
@@ -42,7 +54,7 @@ func (c *Client) GetLocations(pageURL *string) (Locations, error) {
 		return Locations{}, errors.New("error: Not Found")
 	}
 
-	bodyBytes, err := io.ReadAll(resp.Body)
+	bodyBytes, err = io.ReadAll(resp.Body)
 
 	if err != nil {
 		return Locations{}, err
@@ -54,6 +66,8 @@ func (c *Client) GetLocations(pageURL *string) (Locations, error) {
 	if err != nil {
 		return Locations{}, err
 	}
+
+	go c.cache.Add(fullURL, bodyBytes)
 
 	return locations, nil
 }
