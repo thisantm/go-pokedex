@@ -31,7 +31,7 @@ func startRepl(apiState *config) {
 			continue
 		}
 
-		err := command.callback(apiState)
+		err := command.callback(apiState, input)
 
 		if err != nil {
 			fmt.Println(err)
