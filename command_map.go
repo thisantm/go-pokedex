@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func commandMap(apiState *config) error {
+func commandMap(apiState *config, params []string) error {
 
 	resp, err := apiState.pokeapi.GetLocations(apiState.nextLocationURL)
 
@@ -26,7 +26,7 @@ func commandMap(apiState *config) error {
 	return nil
 }
 
-func commandMapb(apiState *config) error {
+func commandMapb(apiState *config, params []string) error {
 	if apiState.prevLocationURL == nil {
 		return errors.New("you are on the first page")
 	}
