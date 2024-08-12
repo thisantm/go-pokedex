@@ -33,5 +33,10 @@ func getCommands() map[string]cliCommand {
 			description: "Show the possible encounters in a location, the location must be passed as a parameter",
 			callback:    commandExplore,
 		},
+		"catch": {
+			name:        "catch",
+			description: "Attempts to catch a pokemon, the pokemon name must be passed as a parameter",
+			callback:    commandCatch,
+		},
 	}
 }
