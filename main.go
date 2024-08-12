@@ -10,11 +10,13 @@ type config struct {
 	pokeapi         pokeapi.Client
 	nextLocationURL *string
 	prevLocationURL *string
+	caughtPokemon   map[string]pokeapi.Pokemon
 }
 
 func main() {
 	apiState := config{
-		pokeapi: pokeapi.NewClient(time.Hour),
+		pokeapi:       pokeapi.NewClient(time.Hour),
+		caughtPokemon: map[string]pokeapi.Pokemon{},
 	}
 	startRepl(&apiState)
 }
