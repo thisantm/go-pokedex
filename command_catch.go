@@ -30,6 +30,7 @@ func commandCatch(apiState *config, params []string) error {
 	}
 
 	fmt.Printf("%s was caught!\n", pokemon)
+	fmt.Println("You may now inspect it with the inspect command")
 	apiState.caughtPokemon[pokemon] = resp
 
 	return nil
