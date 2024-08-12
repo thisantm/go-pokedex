@@ -23,7 +23,6 @@ func commandCatch(apiState *config, params []string) error {
 	catchRate := int(max(5, catchForm))
 	chance := rand.Intn(100)
 
-	fmt.Println(chance, catchRate)
 	fmt.Printf("Trying to catch a %s\n", pokemon)
 	if chance <= catchRate {
 		fmt.Printf("%s was caught!\n", pokemon)
