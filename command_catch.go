@@ -24,11 +24,13 @@ func commandCatch(apiState *config, params []string) error {
 	chance := rand.Intn(100)
 
 	fmt.Printf("Trying to catch a %s\n", pokemon)
-	if chance <= catchRate {
-		fmt.Printf("%s was caught!\n", pokemon)
-	} else {
+	if chance >= catchRate {
 		fmt.Printf("%s escaped!\n", pokemon)
+		return nil
 	}
+
+	fmt.Printf("%s was caught!\n", pokemon)
+	apiState.caughtPokemon[pokemon] = resp
 
 	return nil
 }
