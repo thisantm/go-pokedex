@@ -5,8 +5,7 @@ import (
 )
 
 func commandHelp(apiState *config, params []string) error {
-	fmt.Print(`
-Welcome to the Pokedex!
+	fmt.Print(`Welcome to the Pokedex!
 Usage:
 
 `)
